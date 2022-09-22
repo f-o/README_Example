@@ -40,7 +40,7 @@
   <a href="#license">License</a>
 </p>
 <div align="center">
-  <img src="./img/demo.png" alt="Discord OAuth Demo" width="800px">
+  <img src="./img/demo.png" alt="Discord OAuth Demo" width="800px" style="border-radius:7px;">
 </div>
 
 <br>
