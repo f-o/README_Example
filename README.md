@@ -1,10 +1,8 @@
 
 <h1 align="center">
-  <img src="./img/DiscordoAuth-icon.png" alt="Markdownify" width="120">
+  <img src="./img/DiscordoAuth-icon.png" alt="Discord OAuth" width="120">
   <br>
   Discord OAuth
-  <br>
-  <span style="font-size: 20px">Login with Discord in PHP</span>
 </h1>
 
 <h4 align="center">An Open Source demonstration of a PHP <a href="https://discord.com/developers/docs/topics/oauth2" target="_blank">Discord OAuth</a> login flow, with multiple examples to build on top of.</h4>
@@ -29,116 +27,163 @@
       <img src="https://img.shields.io/discord/353878008861556746?logo=discord"
           alt="chat on Discord"></a>
   <!--Donate-->
-  <a href="https://www.buymeacoffee.com/markisdev">
-      <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
-      <span style="display: inline-block;vertical-align: top;">(Author)</span>
-  </a>
-  <a href="https://www.buymeacoffee.com/FoxDev">
-      <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
-      <span style="display: inline-block;vertical-align: top;">(Maintainer)</span>
+  <a href="#support">
+    <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
   </a>
 </p>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
-  <a href="#download">Download</a> •
-  <a href="#credits">Credits</a> •
-  <a href="#related">Related</a> •
+  <a href="#contributing">Contributing</a> •
+  <a href="#support">Support</a> •
   <a href="#license">License</a>
 </p>
 <div align="center">
-  <img src="./img/demo.png" alt="Markdownify" width="800px">
+  <img src="./img/demo.png" alt="Discord OAuth Demo" width="800px">
 </div>
+
+<br>
 
 ## Key Features
 
-* LivePreview - Make changes, See changes
-  - Instantly see what your Markdown documents look like in HTML as you create them.
-* Sync Scrolling
-  - While you type, LivePreview will automatically scroll to the current location you're editing.
-* GitHub Flavored Markdown  
-* Syntax highlighting
-* [KaTeX](https://khan.github.io/KaTeX/) Support
-* Dark/Light mode
-* Toolbar for basic Markdown formatting
-* Supports multiple cursors
-* Save the Markdown preview as PDF
-* Emoji support in preview :tada:
-* App will keep alive in tray for quick usage
-* Full screen mode
-  - Write distraction free.
-* Cross platform
-  - Windows, macOS and Linux ready.
+* Get user data
+  - ID, Username, Avatar, Discrim etc.
+* Get user connections
+  - Battlenet, Facebook, Github, Spotify, Twitter, Youtube etc.
+* Get user guilds
+  - IDs, Icons, User permissions, Enabled guild features etc.
+* Get guild user
+  - Nickname, Roles, Join date etc.
+* Get guild object (requires bot)
+* Give guild role (requires bot)
+* ...and more!
+
+<br>
 
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+**Prerequisites:**
+* [Git](https://git-scm.com) for cloning the repo
+* [XAMPP](https://www.apachefriends.org/download.html) (or another web server) for running the PHP application
+* [Discord Application](https://discord.com/developers/applications) with OAuth2 ``CLIENT ID`` and ``CLIENT SECRET``
+
+<br>
+
+Start by cloning this repository to your computer.
 
 ```bash
-# Clone this repository
-$ git clone https://github.com/amitmerchant1990/electron-markdownify
+$ git clone https://github.com/MarkisDev/discordoauth
+```
+Now open up XAMPP Control Panel, and click on the `Config` button in the `Apache` module.
 
-# Go into the repository
-$ cd electron-markdownify
+You want to search for "DocumentRoot", and change the values from ``C:/xampp/htdocs`` into the path of your `discordoauth` folder.
 
-# Install dependencies
-$ npm install
+```bash
+#
+# DocumentRoot: The directory out of which you will serve your
+# documents. By default, all requests are taken from this directory, but
+# symbolic links and aliases may be used to point to other locations.
+#
+DocumentRoot "C:\WEB\discordoauth\demos"
+<Directory "C:\WEB\discordoauth\demos">
+```
+> **Note**
+> You may want to point the root directly to one of the included examples for ease of access (`C:\WEB\discordoauth\demos\simple-demo`).
 
-# Run the app
-$ npm start
+Next you need to open the `config.php` file for the demo you wish to run.
+
+*All demos included in this repo come with their own individual config-file. If you wish to try out multiple demos, you will need to edit the values in their respective `config.php` file.*
+
+Fill out the config file as shown in the examples with values from [Discord Developers Dashboard](https://discord.com/developers/applications).
+
+```php
+<?php
+# CLIENT ID
+$client_id = "623204361394291813";
+
+# CLIENT SECRET
+$secret_id = "roOWew9eNHEQS54SQc6v1pl8YBBiX5O0";
+
+# SCOPES SEPARATED BY + SIGN
+$scopes = "identify";
+
+# REDIRECT URL
+$redirect_url = "http://localhost/simple-demo/includes/login.php";
 ```
 
+When you have done this, you must copy the full `$redirect_url` link, and paste it on the [Discord Developers Dashboard](https://discord.com/developers/applications) under your Applications OAuth2 Redirects.
+<img src="./img/oauth-redirect.png" alt="OAuth Redirect" width="500px">
+
 > **Note**
-> If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+> You can add multiple redirects to the same application, so feel free to also add the redirects for the other demos:<br>
+> `http://localhost/admin-dashboard/includes/login.php`<br>
+> `http://localhost/bot-dashboard/includes/login.php`
 
+When you have done all the above steps, you should be able to visit [localhost/simple-demo](http://localhost/simple-demo) in your browser, and see the OAuth demo in action!
 
-## Download
+If you encounter any issues along the way, give us a visit in our [Discord Server](https://join.markis.dev), and we'll be sure to lead you back on the right track!
 
-You can [download](https://github.com/amitmerchant1990/electron-markdownify/releases/tag/v1.2.0) the latest installable version of Markdownify for Windows, macOS and Linux.
+<br>
 
-## Emailware
+## Contributing
 
-Markdownify is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at <bullredeyes@gmail.com> about anything you'd want to say about this software. I'd really appreciate it!
+Contributions to the project are **always** welcome!
 
-## Credits
+If you found a bug, please [open an issue](https://github.com/MarkisDev/discordoauth/issues/new/choose) and let us know.
 
-This software uses the following open source packages:
+If you have a request for a feature you can also [open an issue](https://github.com/MarkisDev/discordoauth/issues/new/choose) and we will take a look at it.
 
-- [Electron](http://electron.atom.io/)
-- [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
-- [showdown](http://showdownjs.github.io/showdown/)
-- [CodeMirror](http://codemirror.net/)
-- Emojis are taken from [here](https://github.com/arvida/emoji-cheat-sheet.com)
-- [highlight.js](https://highlightjs.org/)
+We accept [pull requests](https://github.com/MarkisDev/discordoauth/compare) for any fixes and/or new features.
 
-## Related
+If you want to contribute a new demo, please remember to copy any new Discord related functions to the `discord.php` file in the root of the repo.
 
-[markdownify-web](https://github.com/amitmerchant1990/markdownify-web) - Web version of Markdownify
+<br>
 
 ## Support
+**Support the Author here:**<br>
+<a href="https://www.buymeacoffee.com/markisdev" target="_blank"><img src="./img/bmc-button.png" alt="Buy Me A Coffee" width="160"></a>
 
-<a href="https://www.buymeacoffee.com/5Zn8Xh3l9" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+**Support the Maintainer here:**<br>
+<a href="https://www.buymeacoffee.com/foxdev" target="_blank"><img src="./img/bmc-button.png" alt="Buy Me A Coffee" width="160"></a>
 
-<p>Or</p> 
-
-<a href="https://www.patreon.com/amitmerchant">
-	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
-
-## You may also like...
-
-- [Pomolectron](https://github.com/amitmerchant1990/pomolectron) - A pomodoro app
-- [Correo](https://github.com/amitmerchant1990/correo) - A menubar/taskbar Gmail App for Windows and macOS
+<br>
 
 ## License
 
-MIT
+[MIT License](https://mit-license.org/)
+
+```
+Copyright (c) 2022 MarkisDev
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+<br>
+
+## You may also like...
+
+- [FlamesONE/discordauth](https://github.com/FlamesONE/discordauth)
 
 ---
 
-> [amitmerchant.com](https://www.amitmerchant.com) &nbsp;&middot;&nbsp;
-> GitHub [@amitmerchant1990](https://github.com/amitmerchant1990) &nbsp;&middot;&nbsp;
-> Twitter [@amit_merchant](https://twitter.com/amit_merchant)
+
+> [@f-o](https://github.com/f-o) &nbsp;&middot;&nbsp;
+> [soon.to](https://soon.to) 
 
