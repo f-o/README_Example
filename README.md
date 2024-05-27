@@ -1,4 +1,10 @@
+> This is/was my development repo for creating a proper README.md file for the project [Markisdev/Discord-Oauth](https://github.com/MarkisDev/discordoauth).<br>
+> I have since used this "template" for other projects.
+> Feel free to take inspiration from here!
+> <br><br>
+> The animated image is an APNG file, and has been created like [this](https://github.com/f-o/tools?tab=readme-ov-file#generate-apng-for-readme).
 
+<hr>
 <h1 align="center">
   <img src="./img/DiscordoAuth-icon.png" alt="Discord OAuth" width="120">
   <br>
